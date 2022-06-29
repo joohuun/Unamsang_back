@@ -3,6 +3,7 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from .serializers import ArticleSerializer
 from .models import Article as ArticleModel
+from django.db.models.query_utils import Q
 
 # Create your views here.
 class ArticleView(APIView):
@@ -28,3 +29,22 @@ class ArticleView(APIView):
         
     def delete(self, request):
         return Response({'message': 'delete입니다'})
+    
+    
+class ArticleSearchView(APIView):
+    def get(self, request):
+        words = request.query_params.getlist('words', '')
+        print("words = ", end=""), print(words) # ["mysql","python"]
+
+
+        query = Q()  # Q(skill_set__name='python') | Q(skill_set__name='mysql') | Q
+        for word in words:
+            query.add(Q(title__icontains=word), Q.OR)
+
+        articles = ArticleModel.objects.filter(query)
+        if articles.exists():
+            serializer = ArticleSerializer(articles, many=True)
+            return Response(serializer.data)
+
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        
