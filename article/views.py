@@ -35,8 +35,11 @@ class ArticleView(APIView):
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-    def delete(self, request):
-        return Response({'message': 'delete입니다'})
+    def delete(self, request, obj_id):
+        article = ArticleModel.objects.get(id=obj_id)
+        article.delete()
+
+        return Response({'message': '삭제되었습니다'}, status=status.HTTP_200_OK)
     
 class ArticleSearchView(APIView):
     def get(self, request):
