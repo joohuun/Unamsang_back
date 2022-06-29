@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 
 from user.serializers import UserSerializer
+from user.models import User as UserModel
 
 # Create your views here.
 class UserView(APIView):
@@ -23,6 +24,17 @@ class UserView(APIView):
             return Response(user_serializer.data, status=status.HTTP_200_OK)
         
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # 회원 정보 수정
+    def put(self, request, obj_id):
+        user = UserModel.objects.get(id=obj_id)
+        user_serializer = UserSerializer(user, request.data, partial=True)
+        
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return Response(user_serializer.data, status=status.HTTP_200_OK)
+
+        return Response(user_serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 class UserAPIView(APIView):
     permission_classes = [permissions.AllowAny]
