@@ -36,7 +36,6 @@ class ArticleSearchView(APIView):
         print("words = ", end=""), print(words)
 
         query = Q()
-        query = Q()
         for word in words:
             if word.strip() !="":
                 query.add(Q(title__icontains=word.strip()), Q.OR)
