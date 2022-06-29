@@ -24,7 +24,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(BaseModel):
+class User(BaseModel, AbstractBaseUser):
     username = models.CharField('사용자 계정', max_length=50, unique =True)
     password = models.CharField('비밀번호', max_length=128)
     email = models.EmailField('이메일 주소', max_length=50)
