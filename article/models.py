@@ -20,8 +20,8 @@ class Article(BaseModel):
     is_active = models.BooleanField("공개 여부", default=True)
     tags = TaggableManager("태그",blank=True)
     exposure_end_date = models.DateField("노출 종료일", default=(datetime.date.today() + datetime.timedelta(days=300)))
-    image_location = models.CharField("이미지 주소", max_length=200, null=True)
-    image = models.ImageField("이미지", upload_to='uploads/', null=True)
+    image_location = models.CharField("이미지 주소", max_length=200, null=True, blank=True)
+    image = models.ImageField("이미지", upload_to='uploads/', null=True, blank=True)
 
 
     def __str__(self):
