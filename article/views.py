@@ -36,13 +36,15 @@ class ArticleSearchView(APIView):
         print("words = ", end=""), print(words)
 
         query = Q()
+        query = Q()
         for word in words:
             if word.strip() !="":
                 query.add(Q(title__icontains=word.strip()), Q.OR)
-
+                query.add(Q(user__username__icontains=word.strip()), Q.OR)
         articles = ArticleModel.objects.filter(query)
+        
         if articles.exists():
             serializer = ArticleSerializer(articles, many=True)
-            return Response(serializer.data)
+            return Response(serializer.data) 
 
         return Response(status=status.HTTP_404_NOT_FOUND)
