@@ -34,7 +34,7 @@ class Comment(models.Model):
         Article, verbose_name="원글", on_delete=models.CASCADE)
     user = models.ForeignKey(
         'user.User', verbose_name="작성자", on_delete=models.CASCADE)
-    content = models.TextField("댓글 내용")
+    comment = models.TextField("댓글 내용")
 
     def __str__(self):
         return f"{self.user.username} 님 댓글입니다."
