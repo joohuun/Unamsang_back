@@ -30,16 +30,15 @@ class ArticleView(APIView):
     def delete(self, request):
         return Response({'message': 'delete입니다'})
     
-    
 class ArticleSearchView(APIView):
     def get(self, request):
         words = request.query_params.getlist('words', '')
-        print("words = ", end=""), print(words) # ["mysql","python"]
+        print("words = ", end=""), print(words)
 
-
-        query = Q()  # Q(skill_set__name='python') | Q(skill_set__name='mysql') | Q
+        query = Q()
         for word in words:
-            query.add(Q(title__icontains=word), Q.OR)
+            if word.strip() !="":
+                query.add(Q(title__icontains=word.strip()), Q.OR)
 
         articles = ArticleModel.objects.filter(query)
         if articles.exists():
@@ -47,4 +46,3 @@ class ArticleSearchView(APIView):
             return Response(serializer.data)
 
         return Response(status=status.HTTP_404_NOT_FOUND)
-        
