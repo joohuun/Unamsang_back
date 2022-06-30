@@ -4,6 +4,15 @@ from rest_framework.response import Response
 from .serializers import ArticleSerializer
 from .models import Article as ArticleModel
 from django.db.models.query_utils import Q
+from v_diffusion_pytorch.app_test import run
+
+
+class ImageGenerationView(APIView):
+    def post(self, request):
+        prompt = request.data["prompt"]
+        run(prompt)
+        return Response({"msg": "Success"})
+
 
 # Create your views here.
 class ArticleView(APIView):
