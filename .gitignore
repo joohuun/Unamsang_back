@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,django,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,django,visualstudiocode
 cc12m_1_cfg.pth
+
 ### Django ###
 *.log
 *.pot
