@@ -43,5 +43,5 @@ class Rating(models.Model):
     rating = models.IntegerField("평점", null=True, blank=True)
     
     def __str__(self):
-        return f"{self.user.username}/{self.rating}점"
+        return f"{self.user.username}/{self.rating}점" 
     
