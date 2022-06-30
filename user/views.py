@@ -6,6 +6,11 @@ from django.contrib.auth import authenticate, login, logout
 from user.serializers import UserSerializer
 from user.models import User as UserModel
 
+# from user.jwt_claim_serializer import SpartaTokenObtainPairSerializer
+# from rest_framework_simplejwt.views import TokenObtainPairView
+
+# from rest_framework_simplejwt.authentication import JWTAuthentication
+
 # Create your views here.
 class UserView(APIView):
     
@@ -56,3 +61,20 @@ class UserAPIView(APIView):
     def delete(self, request):
         logout(request)
         return Response({"message": "로그아웃 성공."}, status=status.HTTP_200_OK)
+
+# class SpartaTokenObtainPairView(TokenObtainPairView):
+#     serializer_class = SpartaTokenObtainPairSerializer
+
+# class OnlyAuthenticatedUserView(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
+		
+# 		# JWT 인증방식 클래스 지정하기
+#     authentication_classes = [JWTAuthentication]
+
+#     def get(self, request):
+# 				# Token에서 인증된 user만 가져온다.
+#         user = request.user
+#         print(f"user 정보 : {user}")
+#         if not user:
+#             return Response({"error": "접근 권한이 없습니다."}, status=status.HTTP_401_UNAUTHORIZED)
+#         return Response({"message": "Accepted"})
