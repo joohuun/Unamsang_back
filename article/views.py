@@ -11,12 +11,19 @@ import os
 class ImageGenerationView(APIView):
     def post(self, request):
         prompt = request.data["prompt"]
+        print("****************")
+        print(prompt)
+        print("****************")
         header_of_filename = run(request.user.username, prompt)
         images = []
         for i in range(4):
             images.append(f'static/images/{header_of_filename}_{i}.png')
         images.append(f'static/images/{header_of_filename}_finalgrid.png')
-        return Response({"msg": "Success", "images": images})
+        print(images[0])
+        print(type(images[0]))
+        print("**************")
+        image=images[0]
+        return Response({"msg": "Success", "images": image})
     
     def delete(self, request, images):
         for image in images:
