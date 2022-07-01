@@ -17,13 +17,14 @@ class ImageGenerationView(APIView):
         header_of_filename = run(request.user.username, prompt)
         images = []
         for i in range(4):
-            images.append(f'static/images/{header_of_filename}_{i}.png')
-        images.append(f'static/images/{header_of_filename}_finalgrid.png')
+            images.append(f'media/images/{header_of_filename}_{i}.png')
+        images.append(f'media/images/{header_of_filename}_finalgrid.png')
         print(images[0])
         print(type(images[0]))
         print("**************")
         image=images[0]
-        return Response({"msg": "Success", "images": image})
+        
+        return Response({"msg": "Success", "images": image, "title":prompt})
     
     def delete(self, request, images):
         for image in images:
@@ -31,8 +32,9 @@ class ImageGenerationView(APIView):
         return Response({"msg": "delete success"})    
 
 
-class ArticleView(APIView):
 
+
+class ArticleView(APIView):
     def get(self, request):
         
         articles= ArticleModel.objects.all()
