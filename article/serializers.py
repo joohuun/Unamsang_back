@@ -15,8 +15,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True, source="comment_set", read_only=True)
+    # comments = CommentSerializer(many=True, source="comment_set", read_only=True)
     
     class Meta:
         model = ArticleModel
-        fields = ['title', 'user', 'is_active', 'exposure_end_date', 'image_location', 'image', 'comments']
+        fields = ['title', 'is_active', 'exposure_end_date', 'image_location', 'image']

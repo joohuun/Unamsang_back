@@ -19,10 +19,8 @@ class ImageGenerationView(APIView):
         for i in range(4):
             images.append(f'media/images/{header_of_filename}_{i}.png')
         images.append(f'media/images/{header_of_filename}_finalgrid.png')
-        print(images[0])
-        print(type(images[0]))
-        print("**************")
-        image=images[0]
+
+        image=f'media/images/{header_of_filename}_finalgrid.png'
         
         return Response({"msg": "Success", "images": image, "title":prompt})
     
@@ -38,7 +36,8 @@ class ArticleView(APIView):
     def get(self, request):
         
         articles= ArticleModel.objects.all()
-        article_serializer = ArticleSerializer(articles, many=True)       
+        article_serializer = ArticleSerializer(articles, many=True) 
+        print(article_serializer.data)      
 
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
@@ -46,11 +45,11 @@ class ArticleView(APIView):
         global header_of_filename
         # user = request.user
         # print(f'user:{user}') # user:AnonymousUser
-        print(f'request:{request}')
+        # print(f'request:{request}')
         # request.data['user'] = user.id
-        print(f'request.data{request.data}')
+        # print(f'request.data{request.data}')
         article_serializer = ArticleSerializer(data=request.data)
-        print(f'serializer:{article_serializer}')
+        # print(f'serializer:{article_serializer}')
         if article_serializer.is_valid():
             article_serializer.save()
             return Response(article_serializer.data, status=status.HTTP_200_OK)

@@ -15,7 +15,7 @@ class BaseModel(models.Model):
 
 class Article(BaseModel):
     title = models.CharField("제목", max_length=200)
-    user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.CASCADE)
+    user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.CASCADE, null=True)
     is_active = models.BooleanField("공개 여부", default=True)
     tags = TaggableManager("태그",blank=True)
     exposure_end_date = models.DateField("노출 종료일", default=(datetime.date.today() + datetime.timedelta(days=300)))
