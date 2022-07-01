@@ -34,6 +34,7 @@ class ImageGenerationView(APIView):
 
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
+
     def get(self, request):
         
         articles= ArticleModel.objects.all()
