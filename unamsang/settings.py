@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'taggit_templatetags2',
     'rest_framework_simplejwt',
     'corsheaders',
-    # 'v_diffusion_pytorch'
+    'v_diffusion_pytorch'
 ]
 
 TAGGIT_CASE_INSENSITIVE = True
@@ -204,6 +204,6 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:5500',
+    'http://127.0.0.1:5500',    
     'http://localhost:5500',
     ]
