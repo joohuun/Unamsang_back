@@ -99,4 +99,6 @@ def run(username, prompt):
     for filename in os.listdir(directory):
         os.remove(f'{directory}/{filename}')  
 
-    return f"{username}_{now}"    
+
+    return f"{username}_{now}"
+
