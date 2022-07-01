@@ -55,8 +55,8 @@ class ArticleView(APIView):
             return Response(article_serializer.data, status=status.HTTP_200_OK)
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request, obj_id):
 
+    def put(self, request, obj_id):
         article = ArticleModel.objects.get(id=obj_id)
         article_serializer = ArticleSerializer(article, data=request.data, partial=True)
 
@@ -71,6 +71,7 @@ class ArticleView(APIView):
         article.delete()
 
         return Response({'message': '삭제되었습니다'}, status=status.HTTP_200_OK)
+    
     
 class ArticleSearchView(APIView):
     def get(self, request):
@@ -89,3 +90,5 @@ class ArticleSearchView(APIView):
             return Response(serializer.data) 
 
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+

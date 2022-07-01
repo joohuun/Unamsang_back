@@ -6,13 +6,19 @@ import sys
 import torch
 from torchvision import utils as tv_utils
 from tqdm.notebook import tqdm
+
 import random
 from PIL import ImageFile, Image
 import numpy as np
 import os
 from datetime import datetime
 
+
 sys.path.append('/v-diffusion-pytorch')
+
+from .CLIP import clip
+from .diffusion import get_model, sampling, utils
+import random
 
 # device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 '''
@@ -31,25 +37,27 @@ model = model.cpu().eval().requires_grad_(False)
 clip_model = clip.load(model.clip_model, jit=False, device='cpu')[0]
 
 
+
 ##################################################
 
-height = 256
-width = 256
+height =  256
+width =  256
 side_x = width
 side_y = height
-steps = 1
-n_images = 4
-weight = 3  # 3이 디폴트
-eta = 0
-display_every = 5
-save_progress_video = True
+steps =   5
+n_images =   4
+weight = 3
+eta =   0
+
+display_every = 5  
+save_progress_video = True 
 save_name = 0.00000000
 
-##################################################################
 
 
 def run(username, prompt):
-    target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cpu()
+    target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cpu # cpu
+    # target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cuda # couda
     now = datetime.now().strftime('%Y%m%d%H%M%S')
 
     def cfg_model_fn(x, t):
@@ -69,8 +77,8 @@ def run(username, prompt):
         save_name += 0.00000001
         nrow = math.ceil(info['pred'].shape[0]**0.5)
         grid = tv_utils.make_grid(info['pred'], nrow, padding=0)
-        utils.to_pil_image(grid).save(
-            f"./media/images/steps/%.8f.png" % save_name)
+        utils.to_pil_image(grid).save(f"./media/images/steps/%.8f.png" % save_name)
+        
 
         if info['i'] % display_every == 0:
             nrow = math.ceil(info['pred'].shape[0]**0.5)
@@ -86,11 +94,16 @@ def run(username, prompt):
     gc.collect()
     torch.cuda.empty_cache()
     torch.manual_seed(seed)
+    # cpu 사용시
     x = torch.randn([n_images, 3, side_y, side_x], device='cpu')
     t = torch.linspace(1, 0, steps + 1, device='cpu')[:-1]
+    # 쿠다 사용시
+    # x = torch.randn([n_images, 3, side_y, side_x], device='cuda')
+    # t = torch.linspace(1, 0, steps + 1, device='cuda')[:-1]
     step_list = utils.get_spliced_ddpm_cosine_schedule(t)
-    outs = sampling.sample(cfg_model_fn, x, step_list,
-                           eta, {}, callback=display_callback)
+
+    outs = sampling.sample(cfg_model_fn, x, step_list, eta, {}, callback=display_callback)
+
     tqdm.write('Done!')
 
     for i, out in enumerate(outs):
@@ -111,7 +124,10 @@ def run(username, prompt):
     frames[-1].save(f"media/images/{username}_{now}_finalgrid.png")
 
     # steps에 저장된 이미지들은 바로 삭제
-    for filename in os.listdir(directory):
-        os.remove(f'{directory}/{filename}')
 
-    return f"{username}_{now}"
+    # for filename in os.listdir(directory):
+    #     os.remove(f'{directory}/{filename}')  
+
+    # return f"{username}_{now}"
+
+
