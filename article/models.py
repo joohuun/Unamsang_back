@@ -15,21 +15,18 @@ class BaseModel(models.Model):
 
 class Article(BaseModel):
     title = models.CharField("제목", max_length=200)
-    user = models.ForeignKey(
-        'user.User', verbose_name="작성자", on_delete=models.CASCADE)
+    user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.CASCADE)
     is_active = models.BooleanField("공개 여부", default=True)
     tags = TaggableManager("태그",blank=True)
     exposure_end_date = models.DateField("노출 종료일", default=(datetime.date.today() + datetime.timedelta(days=300)))
     image_location = models.CharField("이미지 주소", max_length=200, null=True, blank=True)
     image = models.ImageField("이미지", upload_to='uploads/', null=True, blank=True)
 
-
     def __str__(self):
         return f"Article:{self.title}"
 
 
 class Comment(models.Model):
-    
     article = models.ForeignKey(Article, verbose_name="원글", on_delete=models.CASCADE)
     user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.CASCADE)
     comment = models.TextField("댓글 내용")
@@ -41,5 +38,8 @@ class Comment(models.Model):
 class Rating(models.Model):
     user = models.OneToOneField('user.User', on_delete=models.SET_NULL, null=True)
     article = models.OneToOneField(Article, on_delete=models.SET_NULL, null=True)
-    rating = models.IntegerChoices('평점','1 2 3 4 5')
+    rating = models.IntegerField("평점", null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.user.username}/{self.rating}점" 
     

@@ -14,3 +14,4 @@ urlpatterns = [
     path('api/authonly/', views.OnlyAuthenticatedUserView.as_view()),
     path('<obj_id>/', views.OnlyAuthenticatedUserView.as_view()),
 ]
+
