@@ -50,6 +50,7 @@ class OnlyAuthenticatedUserView(APIView):
             return Response(user_serializer.data, status=status.HTTP_200_OK)
         return Response(user_serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
+
 # 로그인
 class TokenObtainPairView(TokenObtainPairView):
     serializer_class = TokenObtainPairSerializer

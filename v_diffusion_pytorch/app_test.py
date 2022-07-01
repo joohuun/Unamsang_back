@@ -2,48 +2,33 @@
 import gc
 import math
 import sys
-
 import torch
 from torchvision import utils as tv_utils
-
 from tqdm.notebook import tqdm
-
+from PIL import Image
+import os
 sys.path.append('/v-diffusion-pytorch')
 from .CLIP import clip
 from .diffusion import get_model, sampling, utils
+import random
 
 model = get_model('cc12m_1_cfg')()
 _, side_y, side_x = model.shape
 model.load_state_dict(torch.load('cc12m_1_cfg.pth', map_location='cpu'))
 model = model.half().cuda().eval().requires_grad_(False)
 clip_model = clip.load(model.clip_model, jit=False, device='cpu')[0]
-
-
-import random
- 
-
 height =  256
 width =  256
 side_x = width
 side_y = height
-
 steps =   25
-
 n_images =   4
-
 weight = 3
-
 eta =   0
-
 display_every = 5  
-
 save_progress_video = True 
-
 save_name = 0.00000000
 
-from PIL import ImageFile, Image
-import numpy as np
-import os
 
 def run(prompt):
     target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cuda()
@@ -85,6 +70,7 @@ def run(prompt):
     t = torch.linspace(1, 0, steps + 1, device='cuda')[:-1]
     step_list = utils.get_spliced_ddpm_cosine_schedule(t)
     outs = sampling.sample(cfg_model_fn, x, step_list, eta, {}, callback=display_callback)
+    
     tqdm.write('Done!')
     for i, out in enumerate(outs):
         filename = f'static/images/out_{i}.png'
