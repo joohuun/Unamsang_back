@@ -1,12 +1,16 @@
 from rest_framework.views import APIView
-from rest_framework import permissions, status
+from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, CommentSerializer, RatingSerializer
 from .models import Article as ArticleModel
+from .models import Comment as CommentModel
+from .models import Rating as RatingModel
 from django.db.models.query_utils import Q
 from v_diffusion_pytorch.image_gen import run
 import os
 from rest_framework_simplejwt.authentication import JWTAuthentication
+
+
 
 class ImageGenerationView(APIView):
     def post(self, request):
@@ -33,20 +37,18 @@ class ImageGenerationView(APIView):
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
 
-    def get(self, request):
-        
+    def get(self, request):        
         articles= ArticleModel.objects.all()
         article_serializer = ArticleSerializer(articles, many=True) 
-        print(article_serializer.data)      
-
+        print(article_serializer.data)    
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         global header_of_filename
-        # user = request.user
+        user = request.user
         # print(f'user:{user}') # user:AnonymousUser
         # print(f'request:{request}')
-        # request.data['user'] = user.id
+        request.data['user'] = user.id
         # print(f'request.data{request.data}')
         article_serializer = ArticleSerializer(data=request.data)
         # print(f'serializer:{article_serializer}')
@@ -91,4 +93,22 @@ class ArticleSearchView(APIView):
 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = CommentModel.objects.all()
+    serializer_class = CommentSerializer
+    
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+        return Response({"리뷰 작성 완료"})
+    
+    
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = RatingModel.objects.all()
+    serializer_class = RatingSerializer
+    
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+        return Response({"평점 작성 완료"})
+    
 
