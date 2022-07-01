@@ -1,4 +1,4 @@
-ftfy
+piftfy
 regex
 requests
 Pillow

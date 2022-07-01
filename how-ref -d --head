@@ -1,0 +1,272 @@
+[33mcommit a7357b47b8c77b3bdc3c2c5760abd5b5a5bfda24[m[33m ([m[1;31morigin/main[m[33m)[m
+Merge: a80090b 7ffba67
+Author: JUHOON <102952091+joohuun@users.noreply.github.com>
+Date:   Thu Jun 30 17:59:52 2022 +0900
+
+    Merge pull request #6 from Super-fast-decision-making/AI/text2img
+    
+    Ai/text2img
+
+[33mcommit 7ffba674619583f25fde3469c4ba4fa516c41131[m[33m ([m[1;31morigin/AI/text2img[m[33m)[m
+Author: joohuun <k00005781@gmail.com>
+Date:   Thu Jun 30 17:56:57 2022 +0900
+
+    test2
+
+[33mcommit ca496691e45754cabff919c4bddde72c2a8aa378[m
+Author: joohuun <k00005781@gmail.com>
+Date:   Thu Jun 30 17:55:26 2022 +0900
+
+    test
+
+[33mcommit a80090b197bfbd3a329028a849e6fd6293f67d2b[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/articleback[m[33m, [m[1;31morigin/feature/articleback[m[33m)[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Thu Jun 30 17:44:27 2022 +0900
+
+    feat: frontend 연동 설정
+
+[33mcommit 4d7862127b1985ecff33a4501ec49f079417d004[m[33m ([m[1;31morigin/feature/txt2img[m[33m)[m
+Author: juhoon <k00005781@gmail.com>
+Date:   Thu Jun 30 15:18:45 2022 +0900
+
+    init
+
+[33mcommit d70b8a3e03724ea4e9d57887aee523d8bbaa4df7[m
+Merge: 45f31bf 24a1295
+Author: angar2 <100769423+angar2@users.noreply.github.com>
+Date:   Thu Jun 30 15:15:32 2022 +0900
+
+    Merge pull request #5 from Super-fast-decision-making/feature/user
+    
+    Feature/user
+
+[33mcommit 24a12957510df70a87a9371ca4585e25b5915c46[m[33m ([m[1;31morigin/feature/user[m[33m)[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Thu Jun 30 15:12:46 2022 +0900
+
+    feat: 커스텀 jwt 사용과 기존 user 기능을 토큰 사용 방식으로 변경(로그인, 회원 정보 조회, 수정)
+
+[33mcommit e1aec40274e775e8f9089bef8202602b861cd7d5[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Thu Jun 30 14:06:18 2022 +0900
+
+    feat: jwt 토큰 생성 기능 추가
+
+[33mcommit a0d254e08c81156c87a0856a238a3d71bb96678f[m[33m ([m[1;31morigin/feature/text2img[m[33m)[m
+Author: juhoon <k00005781@gmail.com>
+Date:   Thu Jun 30 12:28:30 2022 +0900
+
+    ADD 실행파일
+
+[33mcommit 4e5f170c90e107fa0dc3d84759492940737f4c10[m
+Author: juhoon <k00005781@gmail.com>
+Date:   Thu Jun 30 12:25:11 2022 +0900
+
+    init
+
+[33mcommit 45f31bfa18e2fb21ec7755001f3e53cc57a48255[m
+Merge: 8e47d55 fd5915a
+Author: Madung2 <104334219+Madung2@users.noreply.github.com>
+Date:   Wed Jun 29 16:50:52 2022 +0900
+
+    Merge pull request #4 from Super-fast-decision-making/feature/articleback
+    
+    feat article views.py delete구현
+
+[33mcommit fd5915acdad020d109e2e427f5863bd42ae367d1[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 16:50:09 2022 +0900
+
+    feat article views.py delete구현
+
+[33mcommit 8e47d55e54bf43f94054b9713de8c64d78e39744[m[33m ([m[1;32mmain[m[33m)[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 16:38:14 2022 +0900
+
+    feat article views.py post,put 구현
+
+[33mcommit 4dd9380fc2d937c6b56feaee7fb25d891fc3e914[m
+Merge: 7f23a03 b102862
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 15:15:39 2022 +0900
+
+    Merge branch 'main' of https://github.com/Super-fast-decision-making/Unamsang_back
+
+[33mcommit 7f23a033303e7486a63c92532c1a26846244fd97[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 15:15:31 2022 +0900
+
+    merge
+
+[33mcommit b10286242a663dd024600277b8c8b86db626ea5f[m
+Merge: 71aa597 6ee1eba
+Author: angar2 <100769423+angar2@users.noreply.github.com>
+Date:   Wed Jun 29 15:01:10 2022 +0900
+
+    Merge pull request #3 from Super-fast-decision-making/feature/user
+    
+    Feature/user
+
+[33mcommit 71aa597c6ff83de16917daae4e3429650674b181[m
+Merge: 61b3bed 3af7b79
+Author: SG-Marco <93754352+SG-Marco@users.noreply.github.com>
+Date:   Wed Jun 29 14:55:36 2022 +0900
+
+    Merge pull request #2 from Super-fast-decision-making/feature/search
+    
+    Feature/search
+
+[33mcommit 3af7b799ac32939b39a5ce2adca232fe8c85923d[m[33m ([m[1;31morigin/feature/search[m[33m)[m
+Author: SG-Marco <rollingpoe@gmail.com>
+Date:   Wed Jun 29 14:48:49 2022 +0900
+
+    fix - code 정리
+
+[33mcommit 7d54817ec60281538303a151c5be72cd68356cbe[m
+Author: SG-Marco <rollingpoe@gmail.com>
+Date:   Wed Jun 29 14:46:16 2022 +0900
+
+    enhancement - username도 검색에 추가
+
+[33mcommit 6ee1ebaa7868159f0aac71b13639df7574d5d73b[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 14:37:55 2022 +0900
+
+    feat: 회원 정보 변경 기능 구현
+
+[33mcommit 292c245d79c76d254f546d78d2f48e2fbb5cc7b5[m
+Author: SG-Marco <rollingpoe@gmail.com>
+Date:   Wed Jun 29 14:27:18 2022 +0900
+
+    fix - seach word의 빈 문자열 strip으로 처리
+
+[33mcommit 5312ff122b12d2cad32612317b383edc7c6f6422[m
+Author: SG-Marco <rollingpoe@gmail.com>
+Date:   Wed Jun 29 14:06:00 2022 +0900
+
+    feat - search by query params
+
+[33mcommit dc116a22750df73f6901d10a6ec892e3b440e3e2[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 14:02:54 2022 +0900
+
+    add: 누락된 로그아웃 url 추가
+
+[33mcommit b7994308fd940aa9d0797d00c573c395c14b4d3f[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 13:58:58 2022 +0900
+
+    feat: 회원가입 기능 구현
+
+[33mcommit 098ed0fe0c65528c9af05652f904af6c55cdf7c2[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 13:46:17 2022 +0900
+
+    feat: 로그인, 로그아웃, 회원 정보 조회 기능 구현
+
+[33mcommit 61b3bed601b67e610ebf4113f5f854df1eb8f4cf[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 13:05:01 2022 +0900
+
+    fix comment model
+
+[33mcommit 75eb25af4f4dfe4e62550e23f436e2e1ed9c007f[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 12:10:20 2022 +0900
+
+    fix article model
+
+[33mcommit cf8668fb6c35f798a42ffd9d79c9a91df890e8fd[m
+Merge: 0acd218 507419a
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 11:54:09 2022 +0900
+
+    Merge branch 'main' of https://github.com/Super-fast-decision-making/Unamsang_back
+
+[33mcommit 0acd218e310ab04325810865101ffa0ee3387058[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 11:53:43 2022 +0900
+
+    merge
+
+[33mcommit 507419ae274c107b7ad4a40e2c538210defeffe1[m
+Merge: 771579c b741820
+Author: angar2 <100769423+angar2@users.noreply.github.com>
+Date:   Wed Jun 29 11:37:53 2022 +0900
+
+    Merge pull request #1 from Super-fast-decision-making/feature/usermodel
+    
+    Feature/usermodel
+
+[33mcommit b741820fb2296c08777a4c810db936b93a75b145[m[33m ([m[1;31morigin/feature/usermodel[m[33m)[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 11:17:53 2022 +0900
+
+    feat: user admin 설정
+
+[33mcommit 93fe437341fb4bfd0662223f35d0bf7fb84432c0[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 11:09:32 2022 +0900
+
+    add: gitignore 설정 추가(migrations, secret_key)
+
+[33mcommit 6c76c6fae390c18aae6397befe5f0dc69d853ee0[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 10:40:52 2022 +0900
+
+    feat: user model 설정
+
+[33mcommit cb87c90378b88fbb07605e7f84a680a46e83560b[m
+Merge: af69904 771579c
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 10:35:01 2022 +0900
+
+    Merge branch 'main' into feature/usermodel
+
+[33mcommit af699049aa8b2cd26f699f45b52fe6287eaf8aea[m
+Author: DESKTOP-REGETCI\SinYoung <uky00832@gmail.com>
+Date:   Wed Jun 29 10:33:22 2022 +0900
+
+    feat: user model 생성
+
+[33mcommit 771579c52abfbb57fa9d5c783f4947c236a6607e[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 10:19:56 2022 +0900
+
+    feature comment model
+
+[33mcommit cf046307f5d3d132eedf88376a90ae6680b64020[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Wed Jun 29 08:38:33 2022 +0900
+
+    feature/article url연결
+
+[33mcommit 15d2fc6d475c73c11ca7c109c33fd63fdf9c1d47[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Tue Jun 28 23:24:53 2022 +0900
+
+    feat basemodel
+
+[33mcommit a4571fb3e0fab70d692f66691b1039c55b2a2e06[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Tue Jun 28 21:24:10 2022 +0900
+
+    feat article model in progress
+
+[33mcommit 3b216121c41c983a3e26c1ea63a941404c279dfa[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Tue Jun 28 20:47:06 2022 +0900
+
+    feat startapp
+
+[33mcommit cd8c0cb3dc0318732fd7cca274c2609cb1abfa16[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Tue Jun 28 20:41:47 2022 +0900
+
+    start project
+
+[33mcommit d415561ab14d255f48a9c2a5c200041ee9a0e50a[m
+Author: 예슬_노트북\tulip <tuliphan91@gmail.com>
+Date:   Tue Jun 28 20:29:58 2022 +0900
+
+    init

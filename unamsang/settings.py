@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'taggit_templatetags2',
     'rest_framework_simplejwt',
     'corsheaders',
-    'v_diffusion_pytorch'
+    # 'v_diffusion_pytorch'
 ]
 
 TAGGIT_CASE_INSENSITIVE = True

@@ -4,17 +4,33 @@ from rest_framework.response import Response
 from .serializers import ArticleSerializer
 from .models import Article as ArticleModel
 from django.db.models.query_utils import Q
-from v_diffusion_pytorch.app_test import run
+from v_diffusion_pytorch.image_gen import run
+import os
 
 
 class ImageGenerationView(APIView):
     def post(self, request):
         prompt = request.data["prompt"]
-        run(prompt)
-        return Response({"msg": "Success"})
+        print("****************")
+        print(prompt)
+        print("****************")
+        header_of_filename = run(request.user.username, prompt)
+        images = []
+        for i in range(4):
+            images.append(f'static/images/{header_of_filename}_{i}.png')
+        images.append(f'static/images/{header_of_filename}_finalgrid.png')
+        print(images[0])
+        print(type(images[0]))
+        print("**************")
+        image=images[0]
+        return Response({"msg": "Success", "images": image})
+    
+    def delete(self, request, images):
+        for image in images:
+            os.remove(image)  
+        return Response({"msg": "delete success"})    
 
 
-# Create your views here.
 class ArticleView(APIView):
 
     def get(self, request):
@@ -25,6 +41,8 @@ class ArticleView(APIView):
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        global header_of_filename
+
         user = request.user
         request.data['user'] = user.id
         article_serializer = ArticleSerializer(data=request.data)
