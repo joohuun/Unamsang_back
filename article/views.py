@@ -6,7 +6,7 @@ from .models import Article as ArticleModel
 from django.db.models.query_utils import Q
 from v_diffusion_pytorch.image_gen import run
 import os
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class ImageGenerationView(APIView):
     def post(self, request):
@@ -17,13 +17,14 @@ class ImageGenerationView(APIView):
         header_of_filename = run(request.user.username, prompt)
         images = []
         for i in range(4):
-            images.append(f'static/images/{header_of_filename}_{i}.png')
-        images.append(f'static/images/{header_of_filename}_finalgrid.png')
+            images.append(f'media/images/{header_of_filename}_{i}.png')
+        images.append(f'media/images/{header_of_filename}_finalgrid.png')
         print(images[0])
         print(type(images[0]))
         print("**************")
         image=images[0]
-        return Response({"msg": "Success", "images": image})
+        
+        return Response({"msg": "Success", "images": image, "title":prompt})
     
     def delete(self, request, images):
         for image in images:
@@ -32,7 +33,7 @@ class ImageGenerationView(APIView):
 
 
 class ArticleView(APIView):
-
+    authentication_classes = [JWTAuthentication]
     def get(self, request):
         
         articles= ArticleModel.objects.all()
@@ -42,10 +43,13 @@ class ArticleView(APIView):
 
     def post(self, request):
         global header_of_filename
-
         user = request.user
+        print(f'user:{user}') # user:AnonymousUser
+        print(f'request:{request}')
         request.data['user'] = user.id
+        print(f'request.data{request.data}')
         article_serializer = ArticleSerializer(data=request.data)
+        print(f'serializer:{article_serializer}')
         if article_serializer.is_valid():
             article_serializer.save()
             return Response(article_serializer.data, status=status.HTTP_200_OK)
