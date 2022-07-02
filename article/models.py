@@ -27,8 +27,8 @@ class Article(BaseModel):
 
 
 class Comment(models.Model):
-    article = models.ForeignKey(Article, verbose_name="원글", on_delete=models.CASCADE)
-    user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.CASCADE)
+    user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.SET_NULL, null=True)
+    article = models.ForeignKey(Article, verbose_name="원글", on_delete=models.SET_NULL, null=True)
     comment = models.TextField("댓글 내용")
 
     def __str__(self):
@@ -36,8 +36,8 @@ class Comment(models.Model):
     
     
 class Rating(models.Model):
-    user = models.OneToOneField('user.User', on_delete=models.SET_NULL, null=True)
-    article = models.OneToOneField(Article, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey('user.User', on_delete=models.SET_NULL, null=True)
+    article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True)
     rating = models.IntegerField("평점", null=True, blank=True)
     
     def __str__(self):
