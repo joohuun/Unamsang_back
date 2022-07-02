@@ -40,7 +40,7 @@ class ArticleView(APIView):
 
 
     def get(self, request):        
-        articles= ArticleModel.objects.all().order_by('-id')
+        articles= ArticleModel.objects.all().exclude(is_active=False).exclude(exposure_end_date__lt=datetime.today()).order_by('-id')
         article_serializer = ArticleSerializer(articles, many=True) 
         print(article_serializer.data)    
         return Response(article_serializer.data, status=status.HTTP_200_OK)
