@@ -21,6 +21,7 @@ class RatingSerializer(serializers.ModelSerializer):
         
     
 class ArticleSerializer(serializers.ModelSerializer):
+
     comments = CommentSerializer(many=True, source="comment_set", read_only=True)
     user = serializers.SlugRelatedField(read_only=True, slug_field='username') 
     rating = serializers.SerializerMethodField()
@@ -30,6 +31,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             "평균 평점":ratings.aggregate(Avg("rating"))
         }
     
+
     class Meta:
         model = ArticleModel
         fields = "__all__"

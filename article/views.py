@@ -24,18 +24,19 @@ class ImageGenerationView(APIView):
             images.append(f'media/images/{header_of_filename}_{i}.png')
         images.append(f'media/images/{header_of_filename}_finalgrid.png')
 
-        image=f'media/images/{header_of_filename}_finalgrid.png'
-        
-        return Response({"msg": "Success", "images": image, "title":prompt})
-    
+        image = f'media/images/{header_of_filename}'
+
+        return Response({"msg": "Success", "images": image, "title": prompt})
+
     def delete(self, request, images):
         for image in images:
-            os.remove(image)  
-        return Response({"msg": "delete success"})    
+            os.remove(image)
+        return Response({"msg": "delete success"})
 
 
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
+
 
     def get(self, request):        
         articles= ArticleModel.objects.all()
@@ -45,11 +46,13 @@ class ArticleView(APIView):
 
     def post(self, request):
         global header_of_filename
+
         user = request.user
         # print(f'user:{user}') # user:AnonymousUser
         # print(f'request:{request}')
         request.data['user'] = user.id
         # print(f'request.data{request.data}')
+
         article_serializer = ArticleSerializer(data=request.data)
         # print(f'serializer:{article_serializer}')
         if article_serializer.is_valid():
@@ -57,24 +60,23 @@ class ArticleView(APIView):
             return Response(article_serializer.data, status=status.HTTP_200_OK)
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def put(self, request, obj_id):
         article = ArticleModel.objects.get(id=obj_id)
-        article_serializer = ArticleSerializer(article, data=request.data, partial=True)
+        article_serializer = ArticleSerializer(
+            article, data=request.data, partial=True)
 
         if article_serializer.is_valid():
             article_serializer.save()
             return Response(article_serializer.data, status=status.HTTP_200_OK)
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        
     def delete(self, request, obj_id):
         article = ArticleModel.objects.get(id=obj_id)
         article.delete()
 
         return Response({'message': '삭제되었습니다'}, status=status.HTTP_200_OK)
-    
-    
+
+
 class ArticleSearchView(APIView):
     def get(self, request):
         words = request.query_params.getlist('words', '')
@@ -82,14 +84,14 @@ class ArticleSearchView(APIView):
 
         query = Q()
         for word in words:
-            if word.strip() !="":
+            if word.strip() != "":
                 query.add(Q(title__icontains=word.strip()), Q.OR)
                 query.add(Q(user__username__icontains=word.strip()), Q.OR)
         articles = ArticleModel.objects.filter(query)
-        
+
         if articles.exists():
             serializer = ArticleSerializer(articles, many=True)
-            return Response(serializer.data) 
+            return Response(serializer.data)
 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -111,4 +113,5 @@ class RatingViewSet(viewsets.ModelViewSet):
         serializer.save(user = self.request.user)
         return Response({"평점 작성 완료"})
     
+
 
