@@ -87,9 +87,11 @@ class ArticleSearchView(APIView):
         words = words.split(' ')
         query = Q()
         for word in words:
+
             if word.strip() !="":
                 query.add(Q(title__icontains=word.strip(), is_active=True), Q.OR)
                 query.add(Q(user__username__icontains=word.strip(), is_active=True), Q.OR)
+
         articles = ArticleModel.objects.filter(query)
 
         if articles.exists():
