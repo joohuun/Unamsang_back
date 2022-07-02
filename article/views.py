@@ -9,8 +9,9 @@ from django.db.models.query_utils import Q
 from v_diffusion_pytorch.image_gen import run
 import os
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from datetime import datetime
 
-
+today = datetime.now().date()
 
 class ImageGenerationView(APIView):
     def post(self, request):
@@ -89,8 +90,8 @@ class ArticleSearchView(APIView):
         for word in words:
 
             if word.strip() !="":
-                query.add(Q(title__icontains=word.strip(), is_active=True), Q.OR)
-                query.add(Q(user__username__icontains=word.strip(), is_active=True), Q.OR)
+                query.add(Q(title__icontains=word.strip(), is_active=True, exposure_end_date__gte=today), Q.OR)
+                query.add(Q(user__username__icontains=word.strip(), is_active=True, exposure_end_date__gte=today), Q.OR)
 
         articles = ArticleModel.objects.filter(query)
 
