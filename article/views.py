@@ -49,6 +49,14 @@ class ArticleView(APIView):
     def post(self, request):
         global header_of_filename
 
+        try:
+            request.data['user']=request.user.id
+        except:
+            pass  
+        print("********************")   
+        print(request.data)   
+        print("********************")
+
         article_serializer = ArticleSerializer(data=request.data)
         # print(f'serializer:{article_serializer}')
         if article_serializer.is_valid():
