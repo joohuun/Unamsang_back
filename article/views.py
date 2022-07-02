@@ -81,21 +81,25 @@ class ArticleView(APIView):
 
 class ArticleSearchView(APIView):
     def get(self, request):
-        words = request.query_params.getlist('words', '')
-        print("words = ", end=""), print(words)
-
+        words = request.query_params.get('words', '').strip()
+        if words == '':
+            return Response({'message': '검색어를 입력해 주세요.'}, status=status.HTTP_404_NOT_FOUND)
+        words = words.split(' ')
         query = Q()
         for word in words:
-            if word.strip() != "":
-                query.add(Q(title__icontains=word.strip()), Q.OR)
-                query.add(Q(user__username__icontains=word.strip()), Q.OR)
+
+            if word.strip() !="":
+                query.add(Q(title__icontains=word.strip(), is_active=True), Q.OR)
+                query.add(Q(user__username__icontains=word.strip(), is_active=True), Q.OR)
+
         articles = ArticleModel.objects.filter(query)
 
         if articles.exists():
             serializer = ArticleSerializer(articles, many=True)
-            return Response(serializer.data)
 
-        return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(serializer.data, status=status.HTTP_200_OK) 
+
+        return Response({'message': '검색된 게시물이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
