@@ -27,7 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_rating(self, obj):
         ratings = obj.rating_set
         return {
-            "평균 평점":ratings.aggregate(Avg("rating"))
+            "rating_avg":ratings.aggregate(Avg("rating"))
         }
     
 
