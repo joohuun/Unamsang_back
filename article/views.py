@@ -42,7 +42,7 @@ class ArticleView(APIView):
     def get(self, request):        
         articles= ArticleModel.objects.all().exclude(is_active=False).exclude(exposure_end_date__lt=datetime.today()).order_by('-id')
         article_serializer = ArticleSerializer(articles, many=True) 
-        print(article_serializer.data)    
+
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -52,9 +52,6 @@ class ArticleView(APIView):
             request.data['user']=request.user.id
         except:
             pass  
-        print("********************")   
-        print(request.data)   
-        print("********************")
 
         article_serializer = ArticleSerializer(data=request.data)
         # print(f'serializer:{article_serializer}')
@@ -83,6 +80,7 @@ class ArticleView(APIView):
 class ArticleSearchView(APIView):
     def get(self, request):
         words = request.query_params.get('words', '').strip()
+        print("*****"+words)
         if words == '':
             return Response({'message': '검색어를 입력해 주세요.'}, status=status.HTTP_404_NOT_FOUND)
         words = words.split(' ')
@@ -97,6 +95,8 @@ class ArticleSearchView(APIView):
 
         if articles.exists():
             serializer = ArticleSerializer(articles, many=True)
+            print("&&&&&&&&&&&&&")
+            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK) 
 
         return Response({'message': '검색된 게시물이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
@@ -110,7 +110,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(user = self.request.user)
         return Response({"리뷰 작성 완료"})
     
-    
+
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = RatingModel.objects.all()
     serializer_class = RatingSerializer
