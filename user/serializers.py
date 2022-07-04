@@ -1,5 +1,15 @@
 from rest_framework import serializers
+from article.serializers import ArticleSerializer
 from user.models import User as UserModel
+
+
+class Mypageserializer(serializers.ModelSerializer):
+    article = ArticleSerializer(many=True, source='article_set', read_only=True)
+    class Meta:
+        model = UserModel
+        fields = "__all__"
+    
+
 
 class UserSerializer(serializers.ModelSerializer):
 
