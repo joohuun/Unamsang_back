@@ -37,11 +37,12 @@ class ImageGenerationView(APIView):
 
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
-    def get(self, request):   
-        articles = ArticleModel.objects.filter(user=request.user)
-        # articles= ArticleModel.objects.all().order_by('-id')
+    def get(self, request):
+        # print(request.data)   
+        # articles = ArticleModel.objects.filter(user=request.user)
+        articles= ArticleModel.objects.all().order_by('-id')
         article_serializer = ArticleSerializer(articles, many=True)
-        print(article_serializer.data)    
+        # print(article_serializer.data +"*******")    
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
