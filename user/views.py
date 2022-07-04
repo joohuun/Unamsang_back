@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 from rest_framework.response import Response
 
-from user.serializers import Mypageserializer, UserSerializer
+from user.serializers import MypageSerializer, UserSerializer
 from user.models import User as UserModel
 
 from user.serializers_jwt import TokenObtainPairSerializer
@@ -51,17 +51,21 @@ class OnlyAuthenticatedUserView(APIView):
         return Response(user_serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
+class MypageView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    def get(self, request):
+        print(request.user)
+        mypage_serializer = MypageSerializer(request.user).data
+        return Response(mypage_serializer, status=status.HTTP_200_OK)
+    
+
 # 로그인
 class TokenObtainPairView(TokenObtainPairView):
     serializer_class = TokenObtainPairSerializer
     
     
     
-# class MypageView(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-#     authentication_classes = [JWTAuthentication]
-#     def get(self, request):
-#         mypage_serializer = Mypageserializer(request.user).data
-#         return Response(mypage_serializer, status=status.HTTP_200_OK)
+
 
     
