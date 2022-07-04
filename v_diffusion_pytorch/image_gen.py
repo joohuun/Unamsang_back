@@ -22,7 +22,7 @@ height = 256
 width = 256
 side_x = width
 side_y = height
-steps = 1  # 25
+steps = 10
 n_images = 4
 weight = 3
 eta = 0
@@ -33,8 +33,7 @@ save_name = 0.00000000
 
 def run(username, prompt):
     # target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cuda() # 쿠다 사용버전
-    target_embed = clip_model.encode_text(
-        clip.tokenize(prompt)).float().cpu()  # 씨피유 사용버전
+    target_embed = clip_model.encode_text(clip.tokenize(prompt)).float().cpu()  # 씨피유 사용버전
     now = datetime.now().strftime('%Y%m%d%H%M%S')
 
     def cfg_model_fn(x, t):
@@ -100,7 +99,9 @@ def run(username, prompt):
     frames[-1].save(f"media/images/{username}_{now}_finalgrid.png")
 
     # steps에 저장된 이미지들은 바로 삭제
+    
     for filename in os.listdir(directory):
         os.remove(f'{directory}/{filename}')
+    
 
     return f"{username}_{now}"
