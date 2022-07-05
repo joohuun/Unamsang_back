@@ -1,13 +1,15 @@
 from rest_framework import serializers
 from article.serializers import ArticleSerializer
+from article.serializers import CommentSerializer
 from user.models import User as UserModel
 
 
 class MypageSerializer(serializers.ModelSerializer):
     article = ArticleSerializer(many=True, source='article_set', read_only=True)
+    comment = CommentSerializer(many=True, source='comment_set', read_only=True)
     class Meta:
         model = UserModel
-        fields = ["username", "email", "created_at", "updated_at", "article"]
+        fields = ["username", "email", "created_at", "updated_at", "article", "comment"]
     
 
 

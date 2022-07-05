@@ -57,6 +57,7 @@ class MypageView(APIView):
     def get(self, request):
         print(request.user)
         mypage_serializer = MypageSerializer(request.user).data
+        print(mypage_serializer)
         return Response(mypage_serializer, status=status.HTTP_200_OK)
     
 
