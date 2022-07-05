@@ -28,7 +28,7 @@ class Article(BaseModel):
 
 class Comment(models.Model):
     user = models.ForeignKey('user.User', verbose_name="작성자", on_delete=models.SET_NULL, null=True)
-    article = models.ForeignKey(Article, verbose_name="원글", on_delete=models.SET_NULL, null=True)
+    article = models.ForeignKey(Article, verbose_name="원글", on_delete=models.CASCADE, null=True)
     comment = models.TextField("댓글 내용")
 
     def __str__(self):
