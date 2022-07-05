@@ -43,3 +43,6 @@ class Rating(models.Model):
     def __str__(self):
         return f"{self.user.username}/{self.rating}점" 
     
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["user", "article"], name="unique_user_article")]
+    
