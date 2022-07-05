@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 from .serializers import ArticleSerializer, CommentSerializer, RatingSerializer
-from .models import Article as ArticleModel
+from .models import Article as ArticleModel, Rating
 from .models import Comment as CommentModel
 from .models import Rating as RatingModel
 from django.db.models.query_utils import Q
@@ -117,10 +117,17 @@ class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     
     def perform_create(self, serializer):
-        print("**************")
-        print(self.request.user)
+        user = self.request.user
+        article_id = self.request.data['article']
+        article = ArticleModel.objects.get(id=article_id)
+        rating = self.request.data['rating']
+        try:
+            rating_model_target = RatingModel.objects.get(user=user, article=article)
+        except:
+            rating_model_target = False
+        if rating_model_target:
+            RatingModel(rating_model_target.id, rating=rating, user=user, article=article).save()
+            return Response(status=status.HTTP_200_OK) # Response는 mixins.py에서 (viewset) 자동으로 주기때문에 의미가 없습니다..ㅜ
         serializer.save(user = self.request.user)
-        return Response({"평점 작성 완료"})
+        return Response(status=status.HTTP_201_CREATED)
     
-
-
