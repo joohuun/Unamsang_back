@@ -9,6 +9,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('', views.UserView.as_view()),
+    path('mypage/', views.MypageView.as_view()),
     path('login/', views.TokenObtainPairView.as_view(), name='sparta_token'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/authonly/', views.OnlyAuthenticatedUserView.as_view()),

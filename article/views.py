@@ -37,12 +37,12 @@ class ImageGenerationView(APIView):
 
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
-
-
-    def get(self, request):        
-        articles= ArticleModel.objects.all().exclude(is_active=False).exclude(exposure_end_date__lt=datetime.today()).order_by('-id')
-        article_serializer = ArticleSerializer(articles, many=True) 
-
+    def get(self, request):
+        # print(request.data)   
+        # articles = ArticleModel.objects.filter(user=request.user)
+        articles= ArticleModel.objects.all().order_by('-id')
+        article_serializer = ArticleSerializer(articles, many=True)
+        # print(article_serializer.data +"*******")    
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -112,10 +112,13 @@ class CommentViewSet(viewsets.ModelViewSet):
     
 
 class RatingViewSet(viewsets.ModelViewSet):
+
     queryset = RatingModel.objects.all()
     serializer_class = RatingSerializer
     
     def perform_create(self, serializer):
+        print("**************")
+        print(self.request.user)
         serializer.save(user = self.request.user)
         return Response({"평점 작성 완료"})
     
