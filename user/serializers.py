@@ -10,9 +10,7 @@ class MypageSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ["username", "email", "created_at", "updated_at", "article", "comment"]
-    
-
-
+        
 class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):

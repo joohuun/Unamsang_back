@@ -16,9 +16,6 @@ today = datetime.now().date()
 class ImageGenerationView(APIView):
     def post(self, request):
         prompt = request.data["prompt"]
-        print("****************")
-        print(prompt)
-        print("****************")
         header_of_filename = run(request.user.username, prompt)
         images = []
         for i in range(4):
@@ -38,11 +35,8 @@ class ImageGenerationView(APIView):
 class ArticleView(APIView):
     authentication_classes = [JWTAuthentication]
     def get(self, request):
-        # print(request.data)   
-        # articles = ArticleModel.objects.filter(user=request.user)
         articles= ArticleModel.objects.all().order_by('-id')
         article_serializer = ArticleSerializer(articles, many=True)
-        # print(article_serializer.data +"*******")    
         return Response(article_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -54,7 +48,6 @@ class ArticleView(APIView):
             pass  
 
         article_serializer = ArticleSerializer(data=request.data)
-        # print(f'serializer:{article_serializer}')
         if article_serializer.is_valid():
             article_serializer.save()
             return Response(article_serializer.data, status=status.HTTP_200_OK)
@@ -80,7 +73,7 @@ class ArticleView(APIView):
 class ArticleSearchView(APIView):
     def get(self, request):
         words = request.query_params.get('words', '').strip()
-        print("*****"+words)
+
         if words == '':
             return Response({'message': '검색어를 입력해 주세요.'}, status=status.HTTP_404_NOT_FOUND)
         words = words.split(' ')
@@ -95,8 +88,6 @@ class ArticleSearchView(APIView):
 
         if articles.exists():
             serializer = ArticleSerializer(articles, many=True)
-            print("&&&&&&&&&&&&&")
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK) 
 
         return Response({'message': '검색된 게시물이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
