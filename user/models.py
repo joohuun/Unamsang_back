@@ -51,3 +51,5 @@ class User(BaseModel, AbstractBaseUser):
     @property
     def is_staff(self): 
         return self.is_admin
+
+
