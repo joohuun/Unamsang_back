@@ -1,19 +1,16 @@
-📌 Petrasche
+📌 You know what I'm saying
 -
-- 반려인을 위한 애견 커뮤니티 사이트
-- 강아지 자랑 및 히스토리 남기는 사이트
-- 애견 월드컵
-- 동네 반려인들과의 산책모임 매칭
+- Text to image 
+- 텍스를 입력하면 그림을 그려주는 AI
+- DallE-2를 모티브로 프로젝트 진행
 
 📌 Introduction
-- 프로젝트면: 펫트라슈
-- 사이트: petrasche.com
-- 기간: 2022.07.07(목) ~ 2022.08.04(목)
-- 김주훈: 웹소켓 실시간 채팅 기능
-- 나성근: 엘라스틱 서치 검색기능
-- 이민기: 아티클, 댓글, 좋아요, 애견 월드컵
-- 엄관용: 마이페이지, 유저프로필, 펫프로필
-- 한예슬: 회원가입, 로그인(카카오API), 산책커뮤니티(카카오지도API), 팔로우
+- 프로젝트명: 유남생
+- 기간: 2022.06.28 ~ 2022.07.05
+- 김주훈: AI적용, AWS배포
+- 나성근: 이미지 업로드
+- 엄관용: 로그인, 회원가입
+- 한예슬: 메인페이지
 - Petrasche_front: https://github.com/Super-fast-decision-making/Petrasche_front
 - Petrasche_classification: https://github.com/Super-fast-decision-making/Petrasche_classification
 ![img_1.png](/static/img_1.png)
