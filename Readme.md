@@ -19,12 +19,12 @@
 > - 댓글 CRUD
 > - 평점 CRUD
 
-📌 마이페이지
-- 자신이 작성한 댓글, 아티클 필터링하여 조회
+### 3. 마이페이지
+> - 자신이 작성한 댓글, 아티클 필터링하여 조회
 
-📌 Nginx / Gunicorn / Daphne
-- Nginx : Proxy 역할
-- Gunicorn : Django 배포용 WSGI서버 http protocol 요청 처리
+### 4. Nginx / Gunicorn
+> - Nginx : Proxy 역할
+> - Gunicorn : Django 배포용 WSGI서버 http protocol 요청 처리
 
 📌 피그마
 -
