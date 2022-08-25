@@ -7,45 +7,21 @@
 📌 Introduction
 - 프로젝트명: 유남생
 - 기간: 2022.06.28 ~ 2022.07.05
-- 김주훈: AI적용, AWS배포
-- 나성근: 이미지 업로드
-- 엄관용: 로그인, 회원가입
-- 한예슬: 메인페이지
-- Petrasche_front: https://github.com/Super-fast-decision-making/Petrasche_front
-- Petrasche_classification: https://github.com/Super-fast-decision-making/Petrasche_classification
-![img_1.png](/static/img_1.png)
 
 📌 로그인/회원가입
-- 유효성 검사, 아이디 중복 검사, JWT Token사용, 카카오 소셜 로그인
+- 유효성 검사, 아이디 중복 검사, JWT Token사용
 
 📌 메인 페이지
-- 강아지 히스토리 CRUD
+- Diffusion Model을 이용하여 Text-to-image 기능 구현
 - 댓글 CRUD
-- 좋아요, 좋아요 취소
-- 인기 게시글 상단 노출
-- 엘라스틱서치 엔진을 사용한 초성, 해시태그 검색 기능
+- 평점 CRUD
 
 📌 마이페이지
-- 개인 프로필 CRUD
-- 펫 프로필 CRUD
-- 자신의 반려동물 프로필 이미지 등록시 AI로 강아지vs고양이 구분 (fastAPI사용, ec2 분리)
-- 페이지네이션
+- 자신이 작성한 댓글, 아티클 필터링하여 조회
 
-📌 산책 매칭 페이지
-- 카카오 지도 API 사용하여 게시글 등록시 위치 제공
-- 매칭 게시판 CRUD (CKEditor 사용)
-- 날짜, 지역, 성별, 시간대등 필터 설정으로 검색
-- 실시간 채팅 기능 (Websocket & Django Channels)
-
-📌 애견 월드컵
-- 자신의 반려동물을 자랑하는 이벤트 페이지
-- 이달의 인기 반려동물  (월별 초기화)
- 
 📌 Nginx / Gunicorn / Daphne
 - Nginx : Proxy 역할
-- Gunicorn : Django 배포용 WSGI서버 http protocol 요청 처리 (worker : 2)
-- Daphne : Django 배포용 ASGI서버 WebSocket portocol 요청 처리
-
+- Gunicorn : Django 배포용 WSGI서버 http protocol 요청 처리
 
 📌 피그마
 -
