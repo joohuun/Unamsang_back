@@ -8,7 +8,7 @@
 -    
 - 프로젝트명: 유남생
 - 기간: 2022.06.28 ~ 2022.07.05   
-- 핵심역할: Diffusion Model을 이용하여 Text-to-image 기능 구현, 댓글기능, 평점기능, 백엔드 ec2배포, 프론트 s3 bucket배포
+- 맡은 역할: Diffusion Model을 이용하여 Text-to-image 기능 구현, 댓글기능, 평점기능, 백엔드 ec2배포, 프론트 s3 bucket배포
    
 📌 핵심기능
 -   
